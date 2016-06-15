@@ -1,0 +1,95 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="UserInformationModelStoreContainer" CdmEntityContainer="UserInformationEntities">
+    <EntitySetMapping Name="lottery1">
+      <EntityTypeMapping TypeName="UserInformationModel.lottery1">
+        <MappingFragment StoreEntitySet="lottery1">
+          <ScalarProperty Name="UberID" ColumnName="UberID" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="UserID" ColumnName="UserID" />
+          <ScalarProperty Name="LotteryGiftID" ColumnName="LotteryGiftID" />
+          <ScalarProperty Name="LotteryDate" ColumnName="LotteryDate" />
+          <ScalarProperty Name="Share" ColumnName="Share" />
+          <ScalarProperty Name="Receive" ColumnName="Receive" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="lottery2">
+      <EntityTypeMapping TypeName="UserInformationModel.lottery2">
+        <MappingFragment StoreEntitySet="lottery2">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="UserID" ColumnName="UserID" />
+          <ScalarProperty Name="WordID" ColumnName="WordID" />
+          <ScalarProperty Name="LotteryDate" ColumnName="LotteryDate" />
+          <ScalarProperty Name="Share" ColumnName="Share" />
+          <ScalarProperty Name="Expired" ColumnName="Expired" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="LotteryGift">
+      <EntityTypeMapping TypeName="UserInformationModel.LotteryGift">
+        <MappingFragment StoreEntitySet="LotteryGift">
+          <ScalarProperty Name="Expired" ColumnName="Expired" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="GiftName" ColumnName="GiftName" />
+          <ScalarProperty Name="GiftDescribtion" ColumnName="GiftDescribtion" />
+          <ScalarProperty Name="Num" ColumnName="Num" />
+          <ScalarProperty Name="Probability" ColumnName="Probability" />
+          <ScalarProperty Name="Owner" ColumnName="Owner" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="sysdiagrams">
+      <EntityTypeMapping TypeName="UserInformationModel.sysdiagrams">
+        <MappingFragment StoreEntitySet="sysdiagrams">
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+          <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+          <ScalarProperty Name="version" ColumnName="version" />
+          <ScalarProperty Name="definition" ColumnName="definition" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="User">
+      <EntityTypeMapping TypeName="UserInformationModel.User">
+        <MappingFragment StoreEntitySet="User">
+          <ScalarProperty Name="Level" ColumnName="Level" />
+          <ScalarProperty Name="Exp" ColumnName="Exp" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="UserName" ColumnName="UserName" />
+          <ScalarProperty Name="Tel" ColumnName="Tel" />
+          <ScalarProperty Name="password" ColumnName="password" />
+          <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Word">
+      <EntityTypeMapping TypeName="UserInformationModel.Word">
+        <MappingFragment StoreEntitySet="Word">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Word1" ColumnName="Word" />
+          <ScalarProperty Name="Num" ColumnName="Num" />
+          <ScalarProperty Name="Probability" ColumnName="Probability" />
+          <ScalarProperty Name="Expired" ColumnName="Expired" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="UBer">
+      <EntityTypeMapping TypeName="UserInformationModel.UBer">
+        <MappingFragment StoreEntitySet="UBer">
+          <ScalarProperty Name="Use" ColumnName="Use" />
+          <ScalarProperty Name="ExchangeNumber" ColumnName="ExchangeNumber" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="UberNo">
+      <EntityTypeMapping TypeName="UserInformationModel.UberNo">
+        <MappingFragment StoreEntitySet="UberNo">
+          <ScalarProperty Name="ExchangeNumber" ColumnName="ExchangeNumber" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

@@ -1,0 +1,324 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="UserInformationModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2005" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="lottery1">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="LotteryGiftID" Type="int" Nullable="false" />
+          <Property Name="LotteryDate" Type="datetime" Nullable="false" />
+          <Property Name="Share" Type="bit" Nullable="false" />
+          <Property Name="Receive" Type="bit" Nullable="false" />
+          <Property Name="UberID" Type="int" />
+        </EntityType>
+        <EntityType Name="lottery2">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="WordID" Type="int" Nullable="false" />
+          <Property Name="LotteryDate" Type="datetime" Nullable="false" />
+          <Property Name="Share" Type="bit" Nullable="false" />
+          <Property Name="Expired" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="LotteryGift">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="GiftName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="GiftDescribtion" Type="nvarchar" MaxLength="150" Nullable="false" />
+          <Property Name="Num" Type="int" Nullable="false" />
+          <Property Name="Probability" Type="float" Nullable="false" />
+          <Property Name="Owner" Type="uniqueidentifier" />
+          <Property Name="Expired" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="UBer">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ExchangeNumber" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Use" Type="bit" Nullable="false" />
+        </EntityType>
+        <!--生成过程中发现错误:
+警告 6002: 表/视图“UserInformation.dbo.UberNo”未定义主键。已推断出该键，并将定义创建为只读的表/视图。-->
+        <EntityType Name="UberNo">
+          <Key>
+            <PropertyRef Name="ID" />
+            <PropertyRef Name="ExchangeNumber" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="ExchangeNumber" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="UserName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Tel" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="password" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="Exp" Type="int" Nullable="false" />
+          <Property Name="Level" Type="int" Nullable="false" />
+          <Property Name="CreateDate" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Word">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Word" Type="nchar" MaxLength="1" Nullable="false" />
+          <Property Name="Num" Type="int" Nullable="false" />
+          <Property Name="Probability" Type="float" Nullable="false" />
+          <Property Name="Expired" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityContainer Name="UserInformationModelStoreContainer">
+          <EntitySet Name="lottery1" EntityType="Self.lottery1" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="lottery2" EntityType="Self.lottery2" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="LotteryGift" EntityType="Self.LotteryGift" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UBer" EntityType="Self.UBer" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Word" EntityType="Self.Word" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UberNo" EntityType="Self.UberNo" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [UberNo].[ID] AS [ID], 
+    [UberNo].[ExchangeNumber] AS [ExchangeNumber]
+    FROM [dbo].[UberNo] AS [UberNo]</DefiningQuery>
+          </EntitySet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="UserInformationModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="lottery1">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="UserID" Type="Guid" Nullable="false" />
+          <Property Name="LotteryGiftID" Type="Int32" Nullable="false" />
+          <Property Name="LotteryDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Share" Type="Boolean" Nullable="false" />
+          <Property Name="Receive" Type="Boolean" Nullable="false" />
+          <Property Name="UberID" Type="Int32" />
+        </EntityType>
+        <EntityType Name="lottery2">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="UserID" Type="Guid" Nullable="false" />
+          <Property Name="WordID" Type="Int32" Nullable="false" />
+          <Property Name="LotteryDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Share" Type="Boolean" Nullable="false" />
+          <Property Name="Expired" Type="Boolean" Nullable="false" />
+        </EntityType>
+        <EntityType Name="LotteryGift">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="GiftName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="GiftDescribtion" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Num" Type="Int32" Nullable="false" />
+          <Property Name="Probability" Type="Double" Nullable="false" />
+          <Property Name="Owner" Type="Guid" />
+          <Property Name="Expired" Type="Boolean" Nullable="false" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Guid" Nullable="false" />
+          <Property Name="UserName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Tel" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="password" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="CreateDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Exp" Type="Int32" Nullable="false" />
+          <Property Name="Level" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Word">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="Word1" Type="String" MaxLength="1" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="Num" Type="Int32" Nullable="false" />
+          <Property Name="Probability" Type="Double" Nullable="false" />
+          <Property Name="Expired" Type="Boolean" Nullable="false" />
+        </EntityType>
+        <EntityContainer Name="UserInformationEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="lottery1" EntityType="Self.lottery1" />
+          <EntitySet Name="lottery2" EntityType="Self.lottery2" />
+          <EntitySet Name="LotteryGift" EntityType="Self.LotteryGift" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+          <EntitySet Name="User" EntityType="Self.User" />
+          <EntitySet Name="Word" EntityType="Self.Word" />
+          <EntitySet Name="UBer" EntityType="UserInformationModel.UBer" />
+          <EntitySet Name="UberNo" EntityType="UserInformationModel.UberNo" />
+        </EntityContainer>
+        <EntityType Name="UBer">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ExchangeNumber" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Use" Type="Boolean" Nullable="false" />
+        </EntityType>
+        <EntityType Name="UberNo">
+          <Key>
+            <PropertyRef Name="ID" />
+            <PropertyRef Name="ExchangeNumber" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="ExchangeNumber" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="UserInformationModelStoreContainer" CdmEntityContainer="UserInformationEntities">
+          <EntitySetMapping Name="lottery1">
+            <EntityTypeMapping TypeName="UserInformationModel.lottery1">
+              <MappingFragment StoreEntitySet="lottery1">
+                <ScalarProperty Name="UberID" ColumnName="UberID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="LotteryGiftID" ColumnName="LotteryGiftID" />
+                <ScalarProperty Name="LotteryDate" ColumnName="LotteryDate" />
+                <ScalarProperty Name="Share" ColumnName="Share" />
+                <ScalarProperty Name="Receive" ColumnName="Receive" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="lottery2">
+            <EntityTypeMapping TypeName="UserInformationModel.lottery2">
+              <MappingFragment StoreEntitySet="lottery2">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="WordID" ColumnName="WordID" />
+                <ScalarProperty Name="LotteryDate" ColumnName="LotteryDate" />
+                <ScalarProperty Name="Share" ColumnName="Share" />
+                <ScalarProperty Name="Expired" ColumnName="Expired" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="LotteryGift">
+            <EntityTypeMapping TypeName="UserInformationModel.LotteryGift">
+              <MappingFragment StoreEntitySet="LotteryGift">
+                <ScalarProperty Name="Expired" ColumnName="Expired" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="GiftName" ColumnName="GiftName" />
+                <ScalarProperty Name="GiftDescribtion" ColumnName="GiftDescribtion" />
+                <ScalarProperty Name="Num" ColumnName="Num" />
+                <ScalarProperty Name="Probability" ColumnName="Probability" />
+                <ScalarProperty Name="Owner" ColumnName="Owner" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="UserInformationModel.sysdiagrams">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="User">
+            <EntityTypeMapping TypeName="UserInformationModel.User">
+              <MappingFragment StoreEntitySet="User">
+                <ScalarProperty Name="Level" ColumnName="Level" />
+                <ScalarProperty Name="Exp" ColumnName="Exp" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="Tel" ColumnName="Tel" />
+                <ScalarProperty Name="password" ColumnName="password" />
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Word">
+            <EntityTypeMapping TypeName="UserInformationModel.Word">
+              <MappingFragment StoreEntitySet="Word">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Word1" ColumnName="Word" />
+                <ScalarProperty Name="Num" ColumnName="Num" />
+                <ScalarProperty Name="Probability" ColumnName="Probability" />
+                <ScalarProperty Name="Expired" ColumnName="Expired" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UBer">
+            <EntityTypeMapping TypeName="UserInformationModel.UBer">
+              <MappingFragment StoreEntitySet="UBer">
+                <ScalarProperty Name="Use" ColumnName="Use" />
+                <ScalarProperty Name="ExchangeNumber" ColumnName="ExchangeNumber" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UberNo">
+            <EntityTypeMapping TypeName="UserInformationModel.UberNo">
+              <MappingFragment StoreEntitySet="UberNo">
+                <ScalarProperty Name="ExchangeNumber" ColumnName="ExchangeNumber" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="无" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

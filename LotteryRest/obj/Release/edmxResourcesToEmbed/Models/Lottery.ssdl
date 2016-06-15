@@ -1,0 +1,103 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="UserInformationModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2005" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="lottery1">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UserID" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="LotteryGiftID" Type="int" Nullable="false" />
+    <Property Name="LotteryDate" Type="datetime" Nullable="false" />
+    <Property Name="Share" Type="bit" Nullable="false" />
+    <Property Name="Receive" Type="bit" Nullable="false" />
+    <Property Name="UberID" Type="int" />
+  </EntityType>
+  <EntityType Name="lottery2">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UserID" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="WordID" Type="int" Nullable="false" />
+    <Property Name="LotteryDate" Type="datetime" Nullable="false" />
+    <Property Name="Share" Type="bit" Nullable="false" />
+    <Property Name="Expired" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="LotteryGift">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="GiftName" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="GiftDescribtion" Type="nvarchar" MaxLength="150" Nullable="false" />
+    <Property Name="Num" Type="int" Nullable="false" />
+    <Property Name="Probability" Type="float" Nullable="false" />
+    <Property Name="Owner" Type="uniqueidentifier" />
+    <Property Name="Expired" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="principal_id" Type="int" Nullable="false" />
+    <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="version" Type="int" />
+    <Property Name="definition" Type="varbinary(max)" />
+  </EntityType>
+  <EntityType Name="UBer">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ExchangeNumber" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Use" Type="bit" Nullable="false" />
+  </EntityType>
+  <!--生成过程中发现错误:
+警告 6002: 表/视图“UserInformation.dbo.UberNo”未定义主键。已推断出该键，并将定义创建为只读的表/视图。-->
+  <EntityType Name="UberNo">
+    <Key>
+      <PropertyRef Name="ID" />
+      <PropertyRef Name="ExchangeNumber" />
+    </Key>
+    <Property Name="ID" Type="int" Nullable="false" />
+    <Property Name="ExchangeNumber" Type="nvarchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="User">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="UserName" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Tel" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="password" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="Exp" Type="int" Nullable="false" />
+    <Property Name="Level" Type="int" Nullable="false" />
+    <Property Name="CreateDate" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Word">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Word" Type="nchar" MaxLength="1" Nullable="false" />
+    <Property Name="Num" Type="int" Nullable="false" />
+    <Property Name="Probability" Type="float" Nullable="false" />
+    <Property Name="Expired" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityContainer Name="UserInformationModelStoreContainer">
+    <EntitySet Name="lottery1" EntityType="Self.lottery1" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="lottery2" EntityType="Self.lottery2" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="LotteryGift" EntityType="Self.LotteryGift" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="UBer" EntityType="Self.UBer" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Word" EntityType="Self.Word" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="UberNo" EntityType="Self.UberNo" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [UberNo].[ID] AS [ID], 
+    [UberNo].[ExchangeNumber] AS [ExchangeNumber]
+    FROM [dbo].[UberNo] AS [UberNo]</DefiningQuery>
+    </EntitySet>
+  </EntityContainer>
+</Schema>
