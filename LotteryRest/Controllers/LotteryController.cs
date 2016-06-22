@@ -12,7 +12,7 @@ namespace LotteryRest.Controllers
     public class LotteryController : ApiController
     {
         const int expIncrease = 10;
-        const int levelupLimit = 100;
+        const int maxExp = 100;
         const int levelMax = 2;
         const int position = 45;
         //
@@ -137,6 +137,7 @@ namespace LotteryRest.Controllers
                         DTO.results = gift.GiftName;
                         var UberObj = db.UBer.First(p => !p.Use);
                         lottery.UberID = UberObj.ID;
+                        UberObj.Use = true;
                         //记录DTO数据
                         DTO.giftName = gift.GiftName;
                         DTO.giftDes = gift.GiftDescribtion;
@@ -168,15 +169,18 @@ namespace LotteryRest.Controllers
             try
             {
                 var result = db.User.Single(p => p.ID == userId);
-                if (result.Exp == (levelupLimit - expIncrease))
+                result.Exp += expIncrease;
+                if (result.Exp >= maxExp)
                 {
-                    result.Exp = 0;
-                    if (result.Level != levelMax)
+                    if (result.Level == levelMax)
+                    {
+                        result.Exp = maxExp;
+                    }
+                    else
+                    {
+                        result.Exp = 0;
                         result.Level++;
-                }
-                else
-                {
-                    result.Exp += expIncrease;
+                    }
                 }
 
                 return result.ToDTO();
