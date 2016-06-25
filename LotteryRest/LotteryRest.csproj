@@ -194,12 +194,14 @@
     <Compile Include="Areas\HelpPage\SampleGeneration\TextSample.cs" />
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
     <Compile Include="Controllers\CorsHandler.cs" />
+    <Compile Include="Controllers\GiftController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LotteryController.cs" />
     <Compile Include="Controllers\LotteryWordController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
     <Compile Include="DTO\Convert.cs" />
+    <Compile Include="DTO\Gift.cs" />
     <Compile Include="DTO\ReturnJasonConstruct.cs" />
     <Compile Include="DTO\RollLettory.cs" />
     <Compile Include="DTO\User.cs" />
