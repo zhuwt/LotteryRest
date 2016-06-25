@@ -170,7 +170,7 @@ namespace LotteryRest.Controllers
             {
                 var result = db.User.Single(p => p.ID == userId);
                 result.Exp += expIncrease;
-                if (result.Exp >= maxExp)
+                if (result.Exp > maxExp)
                 {
                     if (result.Level == levelMax)
                     {
