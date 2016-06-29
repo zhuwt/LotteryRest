@@ -198,6 +198,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LotteryController.cs" />
     <Compile Include="Controllers\LotteryWordController.cs" />
+    <Compile Include="Controllers\SignatureController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
     <Compile Include="DTO\Convert.cs" />
@@ -208,6 +209,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\Http.cs" />
     <Compile Include="Models\Lottery.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -247,6 +249,7 @@
     <Compile Include="Models\User.cs">
       <DependentUpon>Lottery.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\WeChat.cs" />
     <Compile Include="Models\Word.cs">
       <DependentUpon>Lottery.tt</DependentUpon>
     </Compile>
