@@ -85,5 +85,12 @@ namespace Common.Basic.Models
             }
             return EnText.ToString();
         }
+
+        public static string GetTimeStamp()
+        {
+            System.DateTime startTime = TimeZone.CurrentTimeZone.ToLocalTime(new System.DateTime(1970, 1, 1));
+            int timeStamp = (int)(DateTime.Now - startTime).TotalSeconds;
+            return timeStamp.ToString();
+        }
     }
 }

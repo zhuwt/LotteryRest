@@ -11,9 +11,16 @@ namespace LotteryRest.Controllers
     public class SignatureController : ApiController
     {
         // GET: api/Signature
-        public string Get(string nonceStr,string timeStamp,string url)
+        public DTO.ReturnJasonConstruct<DTO.Signature> Get(string url)
         {
-            return WeChat.GetSignature(nonceStr, timeStamp, url);
+            DTO.ReturnJasonConstruct<DTO.Signature> returnDTO = new DTO.ReturnJasonConstruct<DTO.Signature>();
+            DTO.Signature dto = new DTO.Signature();
+            dto.nonceStr = Guid.NewGuid().ToString();
+            dto.timeStamp = WeChat.GetTimeStamp();
+            dto.signature = WeChat.GetSignature(dto.nonceStr, dto.timeStamp, url);
+            returnDTO.DTOObject = dto;
+
+            return returnDTO;
         }
 
         // GET: api/Signature/5

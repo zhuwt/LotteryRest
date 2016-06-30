@@ -205,6 +205,7 @@
     <Compile Include="DTO\Gift.cs" />
     <Compile Include="DTO\ReturnJasonConstruct.cs" />
     <Compile Include="DTO\RollLettory.cs" />
+    <Compile Include="DTO\Signature.cs" />
     <Compile Include="DTO\User.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
