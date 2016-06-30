@@ -27,7 +27,8 @@ namespace LotteryRest.Controllers
                 DateTime dt = DateTime.Now;
                 ReturnJasonConstruct<DTO.RollLettory> dto = new ReturnJasonConstruct<DTO.RollLettory>();
                 DateTime startTime = new DateTime(dt.Year, dt.Month, dt.Day, 0, 0, 0);
-                DateTime endTime = new DateTime(dt.Year, dt.Month, dt.Day + 1, 0, 0, 0);
+                dt = dt.AddDays(1);
+                DateTime endTime = new DateTime(dt.Year, dt.Month, dt.Day, 0, 0, 0);
                 UserInformationEntities db = new UserInformationEntities();
 
                 //获取默认奖项

@@ -119,6 +119,7 @@ namespace LotteryRest.Controllers
 
         // PUT: api/User/5
         [HttpPut]
+        [Route("user")]
         public ReturnJasonConstruct<DTO.User> Put([FromBody]DTO.User user)
         {
             try
@@ -167,6 +168,40 @@ namespace LotteryRest.Controllers
             {
                 throw ex;
             }
+        }
+
+        [HttpPut]
+        [Route("user/share/")]
+        public ReturnJasonConstruct<DTO.User> SetUserShare([FromBody]DTO.User user)
+        {
+            DateTime dt = DateTime.Now;
+            DateTime startTime = new DateTime(dt.Year, dt.Month, dt.Day, 0, 0, 0);
+            dt = dt.AddDays(1);
+            DateTime endTime = new DateTime(dt.Year, dt.Month, dt.Day, 0, 0, 0);
+            UserInformationEntities db = new UserInformationEntities();
+            var lotteryObjects = db.lottery1.Where(p => p.UserID == user.id && p.LotteryDate >= startTime && p.LotteryDate <= endTime).ToList();
+
+            ReturnJasonConstruct<DTO.User> dto = new ReturnJasonConstruct<DTO.User>();
+            //检查当天有没有抽过奖。如果抽过奖，直接跳过。
+            if (lotteryObjects.Count == 0)
+            {
+                dto.status = (int)executeStatus.warning;
+                dto.information = "今天还没有抽奖";
+            }
+            else if (lotteryObjects.Count == 1 && !lotteryObjects[0].Share)
+            {
+                lotteryObjects[0].Share = true;
+                db.SaveChanges();
+                dto.status = (int)executeStatus.success;
+                dto.information = "恭喜您获得额外抽奖一次的机会";
+            }
+            else
+            {
+                dto.status = (int)executeStatus.warning;
+                dto.information = "今天分享获得额外抽奖的次数已经满额，请明天再继续分享.";
+            }
+
+            return dto;
         }
 
         //[HttpPut]
