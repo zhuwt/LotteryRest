@@ -12,13 +12,10 @@ namespace LotteryRest.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class lottery2
+    public partial class Survey
     {
         public int ID { get; set; }
-        public System.Guid UserID { get; set; }
-        public int WordID { get; set; }
-        public System.DateTime LotteryDate { get; set; }
-        public bool Share { get; set; }
-        public bool Expired { get; set; }
+        public int TopicStackID { get; set; }
+        public int Answer { get; set; }
     }
 }

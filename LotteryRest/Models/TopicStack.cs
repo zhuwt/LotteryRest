@@ -12,12 +12,12 @@ namespace LotteryRest.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class Word
+    public partial class TopicStack
     {
         public int ID { get; set; }
-        public string Word1 { get; set; }
-        public int Num { get; set; }
-        public double Probability { get; set; }
+        public string Topic { get; set; }
+        public string Answers { get; set; }
+        public int Right { get; set; }
         public bool Expired { get; set; }
     }
 }

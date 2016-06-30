@@ -21,6 +21,7 @@ namespace LotteryRest.Controllers
         //}
 
         [HttpGet]
+        [Route("user")]
         public ReturnJasonConstruct<DTO.User> Get(string tel, string password)
         {
             try
@@ -47,6 +48,7 @@ namespace LotteryRest.Controllers
 
         // GET: api/User/5
         [HttpGet]
+        [Route("user")]
         public ReturnJasonConstruct<DTO.User> Get(Guid id)
         {
             try

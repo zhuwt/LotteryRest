@@ -4,15 +4,14 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="5a5fae17519f4fc1a0dec51e548bdf02" Name="Diagram1">
+      <Diagram DiagramId="5a5fae17519f4fc1a0dec51e548bdf02" Name="Diagram1" ZoomLevel="99">
         <EntityTypeShape EntityType="UserInformationModel.lottery1" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="UserInformationModel.lottery2" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="UserInformationModel.LotteryGift" Width="1.5" PointX="0.75" PointY="3.75" IsExpanded="true" />
         <EntityTypeShape EntityType="UserInformationModel.sysdiagrams" Width="1.5" PointX="2.75" PointY="3.75" IsExpanded="true" />
         <EntityTypeShape EntityType="UserInformationModel.User" Width="1.5" PointX="4.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="UserInformationModel.Word" Width="1.5" PointX="4.75" PointY="3.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="UserInformationModel.UBer" Width="1.5" PointX="3.375" PointY="6.75" />
-        <EntityTypeShape EntityType="UserInformationModel.UberNo" Width="1.5" PointX="5.375" PointY="6.75" />
+        <EntityTypeShape EntityType="UserInformationModel.UBer" Width="1.5" PointX="2.75" PointY="6.375" />
+        <EntityTypeShape EntityType="UserInformationModel.Survey" Width="1.5" PointX="7.5" PointY="0.75" />
+        <EntityTypeShape EntityType="UserInformationModel.TopicStack" Width="1.5" PointX="0.75" PointY="6.375" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

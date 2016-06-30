@@ -199,6 +199,7 @@
     <Compile Include="Controllers\LotteryController.cs" />
     <Compile Include="Controllers\LotteryWordController.cs" />
     <Compile Include="Controllers\SignatureController.cs" />
+    <Compile Include="Controllers\TopicController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
     <Compile Include="DTO\Convert.cs" />
@@ -206,6 +207,7 @@
     <Compile Include="DTO\ReturnJasonConstruct.cs" />
     <Compile Include="DTO\RollLettory.cs" />
     <Compile Include="DTO\Signature.cs" />
+    <Compile Include="DTO\Topic.cs" />
     <Compile Include="DTO\User.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -229,31 +231,28 @@
     <Compile Include="Models\lottery1.cs">
       <DependentUpon>Lottery.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\lottery2.cs">
-      <DependentUpon>Lottery.tt</DependentUpon>
-    </Compile>
     <Compile Include="Models\LotteryGift.cs">
       <DependentUpon>Lottery.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Probability.cs" />
     <Compile Include="Models\Random.cs" />
     <Compile Include="Models\RollLottery.cs" />
+    <Compile Include="Models\Survey.cs">
+      <DependentUpon>Lottery.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\sysdiagrams.cs">
       <DependentUpon>Lottery.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\UBer.cs">
+    <Compile Include="Models\TopicStack.cs">
       <DependentUpon>Lottery.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\UberNo.cs">
+    <Compile Include="Models\UBer.cs">
       <DependentUpon>Lottery.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\User.cs">
       <DependentUpon>Lottery.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\WeChat.cs" />
-    <Compile Include="Models\Word.cs">
-      <DependentUpon>Lottery.tt</DependentUpon>
-    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

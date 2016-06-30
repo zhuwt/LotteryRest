@@ -17,17 +17,6 @@
           <Property Name="Receive" Type="bit" Nullable="false" />
           <Property Name="UberID" Type="int" />
         </EntityType>
-        <EntityType Name="lottery2">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="UserID" Type="uniqueidentifier" Nullable="false" />
-          <Property Name="WordID" Type="int" Nullable="false" />
-          <Property Name="LotteryDate" Type="datetime" Nullable="false" />
-          <Property Name="Share" Type="bit" Nullable="false" />
-          <Property Name="Expired" Type="bit" Nullable="false" />
-        </EntityType>
         <EntityType Name="LotteryGift">
           <Key>
             <PropertyRef Name="ID" />
@@ -40,6 +29,14 @@
           <Property Name="Owner" Type="uniqueidentifier" />
           <Property Name="Expired" Type="bit" Nullable="false" />
         </EntityType>
+        <EntityType Name="Survey">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="TopicStackID" Type="int" Nullable="false" />
+          <Property Name="Answer" Type="int" Nullable="false" />
+        </EntityType>
         <EntityType Name="sysdiagrams">
           <Key>
             <PropertyRef Name="diagram_id" />
@@ -50,6 +47,16 @@
           <Property Name="version" Type="int" />
           <Property Name="definition" Type="varbinary(max)" />
         </EntityType>
+        <EntityType Name="TopicStack">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="Topic" Type="nvarchar" MaxLength="500" Nullable="false" />
+          <Property Name="Answers" Type="nvarchar" MaxLength="1000" Nullable="false" />
+          <Property Name="Right" Type="int" Nullable="false" />
+          <Property Name="Expired" Type="bit" Nullable="false" />
+        </EntityType>
         <EntityType Name="UBer">
           <Key>
             <PropertyRef Name="ID" />
@@ -57,16 +64,6 @@
           <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="ExchangeNumber" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="Use" Type="bit" Nullable="false" />
-        </EntityType>
-        <!--生成过程中发现错误:
-警告 6002: 表/视图“UserInformation.dbo.UberNo”未定义主键。已推断出该键，并将定义创建为只读的表/视图。-->
-        <EntityType Name="UberNo">
-          <Key>
-            <PropertyRef Name="ID" />
-            <PropertyRef Name="ExchangeNumber" />
-          </Key>
-          <Property Name="ID" Type="int" Nullable="false" />
-          <Property Name="ExchangeNumber" Type="nvarchar" MaxLength="50" Nullable="false" />
         </EntityType>
         <EntityType Name="User">
           <Key>
@@ -80,30 +77,14 @@
           <Property Name="Level" Type="int" Nullable="false" />
           <Property Name="CreateDate" Type="datetime" Nullable="false" />
         </EntityType>
-        <EntityType Name="Word">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Word" Type="nchar" MaxLength="1" Nullable="false" />
-          <Property Name="Num" Type="int" Nullable="false" />
-          <Property Name="Probability" Type="float" Nullable="false" />
-          <Property Name="Expired" Type="bit" Nullable="false" />
-        </EntityType>
         <EntityContainer Name="UserInformationModelStoreContainer">
           <EntitySet Name="lottery1" EntityType="Self.lottery1" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="lottery2" EntityType="Self.lottery2" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="LotteryGift" EntityType="Self.LotteryGift" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Survey" EntityType="Self.Survey" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TopicStack" EntityType="Self.TopicStack" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="UBer" EntityType="Self.UBer" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Word" EntityType="Self.Word" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="UberNo" EntityType="Self.UberNo" store:Type="Tables" store:Schema="dbo">
-            <DefiningQuery>SELECT 
-    [UberNo].[ID] AS [ID], 
-    [UberNo].[ExchangeNumber] AS [ExchangeNumber]
-    FROM [dbo].[UberNo] AS [UberNo]</DefiningQuery>
-          </EntitySet>
         </EntityContainer>
       </Schema></edmx:StorageModels>
     <!-- CSDL content -->
@@ -120,17 +101,6 @@
           <Property Name="Share" Type="Boolean" Nullable="false" />
           <Property Name="Receive" Type="Boolean" Nullable="false" />
           <Property Name="UberID" Type="Int32" />
-        </EntityType>
-        <EntityType Name="lottery2">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="Int32" Nullable="false" />
-          <Property Name="UserID" Type="Guid" Nullable="false" />
-          <Property Name="WordID" Type="Int32" Nullable="false" />
-          <Property Name="LotteryDate" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="Share" Type="Boolean" Nullable="false" />
-          <Property Name="Expired" Type="Boolean" Nullable="false" />
         </EntityType>
         <EntityType Name="LotteryGift">
           <Key>
@@ -166,25 +136,14 @@
           <Property Name="Exp" Type="Int32" Nullable="false" />
           <Property Name="Level" Type="Int32" Nullable="false" />
         </EntityType>
-        <EntityType Name="Word">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="Int32" Nullable="false" />
-          <Property Name="Word1" Type="String" MaxLength="1" FixedLength="true" Unicode="true" Nullable="false" />
-          <Property Name="Num" Type="Int32" Nullable="false" />
-          <Property Name="Probability" Type="Double" Nullable="false" />
-          <Property Name="Expired" Type="Boolean" Nullable="false" />
-        </EntityType>
         <EntityContainer Name="UserInformationEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="lottery1" EntityType="Self.lottery1" />
-          <EntitySet Name="lottery2" EntityType="Self.lottery2" />
           <EntitySet Name="LotteryGift" EntityType="Self.LotteryGift" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
           <EntitySet Name="User" EntityType="Self.User" />
-          <EntitySet Name="Word" EntityType="Self.Word" />
           <EntitySet Name="UBer" EntityType="UserInformationModel.UBer" />
-          <EntitySet Name="UberNo" EntityType="UserInformationModel.UberNo" />
+          <EntitySet Name="Survey" EntityType="UserInformationModel.Survey" />
+          <EntitySet Name="TopicStack" EntityType="UserInformationModel.TopicStack" />
         </EntityContainer>
         <EntityType Name="UBer">
           <Key>
@@ -194,13 +153,23 @@
           <Property Name="ExchangeNumber" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Use" Type="Boolean" Nullable="false" />
         </EntityType>
-        <EntityType Name="UberNo">
+        <EntityType Name="Survey">
           <Key>
             <PropertyRef Name="ID" />
-            <PropertyRef Name="ExchangeNumber" />
           </Key>
           <Property Name="ID" Type="Int32" Nullable="false" />
-          <Property Name="ExchangeNumber" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="TopicStackID" Type="Int32" Nullable="false" />
+          <Property Name="Answer" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TopicStack">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="Topic" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="Answers" Type="String" Nullable="false" MaxLength="1000" FixedLength="false" Unicode="true" />
+          <Property Name="Right" Type="Int32" Nullable="false" />
+          <Property Name="Expired" Type="Boolean" Nullable="false" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -218,18 +187,6 @@
                 <ScalarProperty Name="LotteryDate" ColumnName="LotteryDate" />
                 <ScalarProperty Name="Share" ColumnName="Share" />
                 <ScalarProperty Name="Receive" ColumnName="Receive" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="lottery2">
-            <EntityTypeMapping TypeName="UserInformationModel.lottery2">
-              <MappingFragment StoreEntitySet="lottery2">
-                <ScalarProperty Name="ID" ColumnName="ID" />
-                <ScalarProperty Name="UserID" ColumnName="UserID" />
-                <ScalarProperty Name="WordID" ColumnName="WordID" />
-                <ScalarProperty Name="LotteryDate" ColumnName="LotteryDate" />
-                <ScalarProperty Name="Share" ColumnName="Share" />
-                <ScalarProperty Name="Expired" ColumnName="Expired" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -270,17 +227,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Word">
-            <EntityTypeMapping TypeName="UserInformationModel.Word">
-              <MappingFragment StoreEntitySet="Word">
-                <ScalarProperty Name="ID" ColumnName="ID" />
-                <ScalarProperty Name="Word1" ColumnName="Word" />
-                <ScalarProperty Name="Num" ColumnName="Num" />
-                <ScalarProperty Name="Probability" ColumnName="Probability" />
-                <ScalarProperty Name="Expired" ColumnName="Expired" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="UBer">
             <EntityTypeMapping TypeName="UserInformationModel.UBer">
               <MappingFragment StoreEntitySet="UBer">
@@ -290,10 +236,22 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="UberNo">
-            <EntityTypeMapping TypeName="UserInformationModel.UberNo">
-              <MappingFragment StoreEntitySet="UberNo">
-                <ScalarProperty Name="ExchangeNumber" ColumnName="ExchangeNumber" />
+          <EntitySetMapping Name="Survey">
+            <EntityTypeMapping TypeName="UserInformationModel.Survey">
+              <MappingFragment StoreEntitySet="Survey">
+                <ScalarProperty Name="Answer" ColumnName="Answer" />
+                <ScalarProperty Name="TopicStackID" ColumnName="TopicStackID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TopicStack">
+            <EntityTypeMapping TypeName="UserInformationModel.TopicStack">
+              <MappingFragment StoreEntitySet="TopicStack">
+                <ScalarProperty Name="Expired" ColumnName="Expired" />
+                <ScalarProperty Name="Right" ColumnName="Right" />
+                <ScalarProperty Name="Answers" ColumnName="Answers" />
+                <ScalarProperty Name="Topic" ColumnName="Topic" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>

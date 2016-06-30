@@ -26,12 +26,11 @@ namespace LotteryRest.Models
         }
     
         public virtual DbSet<lottery1> lottery1 { get; set; }
-        public virtual DbSet<lottery2> lottery2 { get; set; }
         public virtual DbSet<LotteryGift> LotteryGift { get; set; }
         public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
         public virtual DbSet<User> User { get; set; }
-        public virtual DbSet<Word> Word { get; set; }
         public virtual DbSet<UBer> UBer { get; set; }
-        public virtual DbSet<UberNo> UberNo { get; set; }
+        public virtual DbSet<Survey> Survey { get; set; }
+        public virtual DbSet<TopicStack> TopicStack { get; set; }
     }
 }
