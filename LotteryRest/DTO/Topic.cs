@@ -8,7 +8,12 @@ namespace LotteryRest.DTO
     public class Topic
     {
         public string topic;
-        public List<string> choice;
-        public int answer;
+        public List<Choice> choices;
+    }
+
+    public class Choice
+    {
+        public string choice;
+        public int goal;
     }
 }

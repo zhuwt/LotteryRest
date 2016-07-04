@@ -25,12 +25,16 @@ namespace LotteryRest.Controllers
                 {
                     DTO.Topic obj = new DTO.Topic();
                     obj.topic = item.Topic;
-                    obj.answer = item.Right;
-                    obj.choice = new List<string>();
-                    string[] choices = item.Answers.Split(separators, StringSplitOptions.RemoveEmptyEntries);
-                    foreach (var choice in choices)
+                    obj.choices = new List<DTO.Choice>();
+                    string[] choices = item.Choices.Split(separators, StringSplitOptions.RemoveEmptyEntries);
+                    string[] goal = item.Goals.Split(separators, StringSplitOptions.RemoveEmptyEntries);
+                    for (int n=0;n< choices.Length;n++)
                     {
-                        obj.choice.Add(choice);
+                        obj.choices.Add(new DTO.Choice
+                        {
+                            choice = choices[n],
+                            goal = int.Parse(goal[n])
+                        });
                     }
                     dto.DTOObject.Add(obj);
                 }

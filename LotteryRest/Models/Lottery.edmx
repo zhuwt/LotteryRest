@@ -53,8 +53,8 @@
           </Key>
           <Property Name="ID" Type="int" Nullable="false" />
           <Property Name="Topic" Type="nvarchar" MaxLength="500" Nullable="false" />
-          <Property Name="Answers" Type="nvarchar" MaxLength="1000" Nullable="false" />
-          <Property Name="Right" Type="int" Nullable="false" />
+          <Property Name="Choices" Type="nvarchar" MaxLength="1000" Nullable="false" />
+          <Property Name="Goals" Type="nvarchar" MaxLength="1000" Nullable="false" />
           <Property Name="Expired" Type="bit" Nullable="false" />
         </EntityType>
         <EntityType Name="UBer">
@@ -167,9 +167,9 @@
           </Key>
           <Property Name="ID" Type="Int32" Nullable="false" />
           <Property Name="Topic" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="true" />
-          <Property Name="Answers" Type="String" Nullable="false" MaxLength="1000" FixedLength="false" Unicode="true" />
-          <Property Name="Right" Type="Int32" Nullable="false" />
           <Property Name="Expired" Type="Boolean" Nullable="false" />
+          <Property Name="Choices" Type="String" Nullable="false" MaxLength="1000" FixedLength="false" Unicode="true" />
+          <Property Name="Goals" Type="String" Nullable="false" MaxLength="1000" FixedLength="false" Unicode="true" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -248,9 +248,9 @@
           <EntitySetMapping Name="TopicStack">
             <EntityTypeMapping TypeName="UserInformationModel.TopicStack">
               <MappingFragment StoreEntitySet="TopicStack">
+                <ScalarProperty Name="Goals" ColumnName="Goals" />
+                <ScalarProperty Name="Choices" ColumnName="Choices" />
                 <ScalarProperty Name="Expired" ColumnName="Expired" />
-                <ScalarProperty Name="Right" ColumnName="Right" />
-                <ScalarProperty Name="Answers" ColumnName="Answers" />
                 <ScalarProperty Name="Topic" ColumnName="Topic" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>

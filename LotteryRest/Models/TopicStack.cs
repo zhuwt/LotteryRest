@@ -16,8 +16,8 @@ namespace LotteryRest.Models
     {
         public int ID { get; set; }
         public string Topic { get; set; }
-        public string Answers { get; set; }
-        public int Right { get; set; }
         public bool Expired { get; set; }
+        public string Choices { get; set; }
+        public string Goals { get; set; }
     }
 }
